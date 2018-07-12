@@ -42,7 +42,7 @@ npm install higlass-time-interval-track
 }
 ```
 This will place the first time interval at data position 0 and the last at data position 59340. Each data point 
-is thus assumed to last 100 milliseconds.
+is thus assumed to last 10 milliseconds.
 
 3. Configure the track in your view config and be happy! Cheers 🎉
 

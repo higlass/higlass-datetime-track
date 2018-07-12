@@ -31,7 +31,20 @@ npm install higlass-time-interval-track
 </script>
 ```
 
-2. Now, configure the track in your view config and be happy! Cheers 🎉
+2 Make sure that your server is hosting a htime file. This file should contain ``start``, ``end`` and ``length`` which indicate the start time, end time, and the length of the data points that span that time interval.
+
+```
+
+{
+  "start": 1527700333497.325, 
+  "end": 1527700926756.7783, 
+  "len": 59340
+}
+```
+This will place the first time interval at data position 0 and the last at data position 59340. Each data point 
+is thus assumed to last 100 milliseconds.
+
+3. Configure the track in your view config and be happy! Cheers 🎉
 
 ```
 {

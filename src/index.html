@@ -32,52 +32,68 @@ const testViewConfig =
   "editable": true,
   "zoomFixed": false,
   "trackSourceServers": [
-    "http://localhost:8000/api/v1"
+    "http://localhost:8989//api/v1"
   ],
-  "exportViewUrl": "http://higlass.io/api/v1/viewconfs/",
+  "exportViewUrl": "/api/v1/viewconfs/",
   "views": [
     {
-      "initialXDomain": [
-        584.3580555423636,
-        55474.64562614506
-      ],
       "tracks": {
         "top": [
           {
-            "name": "sample_htime.json",
-            "created": "2018-05-20T20:11:56.364578Z",
-            "server": "http://localhost:8000/api/v1",
-            "tilesetUid": "N5Oc40r-RKOzdo05RNZ_-Q",
-            "uid": "DOkLGvEZR_mWFhaYNMRX2Q",
+            "type": "top-axis",
+            "local": true,
+            "orientation": "1d-horizontal",
+            "name": "Top Axis",
+            "thumbnail": {},
+            "defaultOptions": {},
+            "server": "",
+            "tilesetUid": "evamopQ9Tni8brUUoSogTg",
+            "uid": "bNvCCbQxTvuMI19HVgL5XA",
+            "options": {},
+            "width": 20,
+            "height": 20,
+            "position": "top"
+          },
+          {
+            "name": "test.htime",
+            "created": "2018-07-12T00:32:53.485157Z",
+            "server": "http://localhost:8989/api/v1",
+            "tilesetUid": "C4ga90PxQC20_cl7qRR6Ew",
+            "uid": "M5rJkMRmQ4uvxXLt6mW0Mg",
             "type": "time-interval-track",
             "options": {
-              "name": "sample_htime.json"
+              "name": "test.htime"
             },
-            "width": 20,
+            "width": 970,
+            "height": 92,
             "position": "top"
           }
         ],
-        "center": [],
         "left": [],
+        "center": [],
         "right": [],
         "bottom": [],
         "whole": [],
         "gallery": []
       },
+      "initialXDomain": [
+        -770.1020870270984,
+        42189.576464333986
+      ],
+      "initialYDomain": [
+        1599969441.3652055,
+        1600014261.1535497
+      ],
       "layout": {
         "w": 12,
         "h": 12,
         "x": 0,
         "y": 0,
-        "i": "P3Ho7j8HQjWlBi8JjLIo2w",
+        "i": "RBhZWz6qSUqs1ij0BmEzgg",
         "moved": false,
         "static": false
       },
-      "uid": "P3Ho7j8HQjWlBi8JjLIo2w",
-      "initialYDomain": [
-        -12769.465713866583,
-        53069.87525589198
-      ]
+      "uid": "RBhZWz6qSUqs1ij0BmEzgg"
     }
   ],
   "zoomLocks": {

@@ -1,5 +1,7 @@
 import { format } from 'd3-format';
 
+const SECS_TO_MILLIS = 1000;
+
 function formatTime(seconds, tickDiff) {
   // tickDiff specifies the number of significant digits for values between ticks
   const h = Math.floor(seconds / 3600);
@@ -60,7 +62,7 @@ const TimeIntervalTrack = (HGC, ...args) => {
       let tickDiff = null;
 
       if (this.tickValues.length >= 2) {
-        tickDiff = this.tickValues[1] - this.tickValues[0];
+        tickDiff = (this.tickValues[1] - this.tickValues[0]) / SECS_TO_MILLIS;
         tickDiff = Math.floor(Math.log(tickDiff) / Math.log(10));
       }
 
@@ -81,8 +83,9 @@ const TimeIntervalTrack = (HGC, ...args) => {
           this.pMain.addChild(newText);
         }
 
-
-        this.axisTexts[i].text = formatTime(tick, tickDiff);
+        this.axisTexts[i].text = formatTime(
+          tick / SECS_TO_MILLIS, tickDiff,
+        );
         this.axisTexts[i].anchor.y = 0.5;
         this.axisTexts[i].anchor.x = 0.5;
         i++;
@@ -95,18 +98,20 @@ const TimeIntervalTrack = (HGC, ...args) => {
     }
 
     calculateAxisTickValues() {
-      const scale = +this.tilesetInfo.end_value / +this.tilesetInfo.max_width;
-      const tickWidth = 100;
+      const scale = (+this.tilesetInfo.end_value - +this.tilesetInfo.start_value) 
+        / +this.tilesetInfo.max_width;
+      const tickWidth = 200;
       const tickCount = Math.max(
         Math.ceil((this._xScale.range()[1] - this._xScale.range()[0]) / tickWidth), 1,
       );
 
       const newScale = this._xScale.copy().domain(
-        [this._xScale.domain()[0] * scale, this._xScale.domain()[1] * scale],
+        [(this._xScale.domain()[0] * scale), 
+          (this._xScale.domain()[1] * scale)],
       );
 
       return newScale.ticks(tickCount).filter(
-        t => t >= this.tilesetInfo.start_value && t <= this.tilesetInfo.end_value,
+        t => t >= 0 && t <= (this.tilesetInfo.end_value - this.tilesetInfo.start_value),
       );
     }
 
@@ -116,7 +121,8 @@ const TimeIntervalTrack = (HGC, ...args) => {
 
       if (!this.tilesetInfo) return;
 
-      const scale = +this.tilesetInfo.end_value / +this.tilesetInfo.max_width;
+      const scale = (+this.tilesetInfo.end_value - +this.tilesetInfo.start_value) 
+        / +this.tilesetInfo.max_width;
 
       const tickHeight = 10;
       const textHeight = 10;
@@ -133,7 +139,8 @@ const TimeIntervalTrack = (HGC, ...args) => {
       this.createAxisTexts();
 
       ticks.forEach((tick, i) => {
-        const xPos = this.position[0] + this._xScale(tick / scale);
+        const xPos = this.position[0] + 
+          this._xScale(tick / scale);
 
         graphics.moveTo(xPos, this.position[1] + tickStartY);
         graphics.lineTo(xPos, this.position[1] + tickEndY); 

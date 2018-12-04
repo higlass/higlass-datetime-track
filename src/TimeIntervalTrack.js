@@ -36,16 +36,8 @@ const TimeIntervalTrack = (HGC, ...args) => {
   const { PIXI } = HGC.libraries;
 
   class TimeIntervalTrackClass extends HGC.tracks.TiledPixiTrack {
-    constructor(
-      scene, trackConfig, dataConfig, handleTilesetInfoReceived, animate,
-    ) {
-      super(
-        scene,
-        dataConfig,
-        handleTilesetInfoReceived,
-        trackConfig.options,
-        animate,
-      );
+    constructor(context, options) {
+      super(context, options);
 
       this.axisTexts = [];
       this.axisTextFontFamily = 'Arial';
@@ -98,7 +90,7 @@ const TimeIntervalTrack = (HGC, ...args) => {
     }
 
     calculateAxisTickValues() {
-      const scale = (+this.tilesetInfo.end_value - +this.tilesetInfo.start_value) 
+      const scale = (+this.tilesetInfo.end_value - +this.tilesetInfo.start_value)
         / +this.tilesetInfo.max_width;
       const tickWidth = 200;
       const tickCount = Math.max(
@@ -106,7 +98,7 @@ const TimeIntervalTrack = (HGC, ...args) => {
       );
 
       const newScale = this._xScale.copy().domain(
-        [(this._xScale.domain()[0] * scale), 
+        [(this._xScale.domain()[0] * scale),
           (this._xScale.domain()[1] * scale)],
       );
 
@@ -121,7 +113,7 @@ const TimeIntervalTrack = (HGC, ...args) => {
 
       if (!this.tilesetInfo) return;
 
-      const scale = (+this.tilesetInfo.end_value - +this.tilesetInfo.start_value) 
+      const scale = (+this.tilesetInfo.end_value - +this.tilesetInfo.start_value)
         / +this.tilesetInfo.max_width;
 
       const tickHeight = 10;
@@ -139,11 +131,11 @@ const TimeIntervalTrack = (HGC, ...args) => {
       this.createAxisTexts();
 
       ticks.forEach((tick, i) => {
-        const xPos = this.position[0] + 
+        const xPos = this.position[0] +
           this._xScale(tick / scale);
 
         graphics.moveTo(xPos, this.position[1] + tickStartY);
-        graphics.lineTo(xPos, this.position[1] + tickEndY); 
+        graphics.lineTo(xPos, this.position[1] + tickEndY);
 
         this.axisTexts[i].x = xPos;
         this.axisTexts[i].y = this.position[1] + tickEndY + betweenTickAndText;

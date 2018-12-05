@@ -14,18 +14,18 @@ deploy:
   - provider: releases
     skip_cleanup: true
     api_key:
-        secure: d0v6K+t4zEj5/Q50jWIx8fDbeZUoxe5gzh1OZu32dRGpcxwEQapS1MVxy/vn47t7JtDEVh72ukfqCdI0liuhObvW0xUZnsm7Ib0Z7dWgAChIz3nh5Sj+bNVrmefNliMWUTNSVbzrMJiHqKkXGor1yzKVrIV1HrKPvsceOVrMAS/txz0uowsi6YCIwdwscJvTPtKPfHq/653oPfItG78XgbQ42Jh4h7snuZH8K2WyB/hc5jmL6sUGfYRk4qbYE5iuKNN4Ckfe0PKg/O+FauZIDwhGJUnME1LnN33mLPhUUJ+Z4zAdPxcwfBBo811qId/aa/5RLy9bG6Ur+yZFZUhakJPALX/GrWGxJs8K4Ll2wDXoAOsPwZ4AlSFAy726ew/NZL6PVa/SNbybUyxrHhEJOyxFADUyvsAlSds9uN5qMKoNgGOV2iuDFlOTdZpTSLiL1lLAjf4qFKvB/hdWeuMcQ49DL+ISEeRGUV8GgWrObbL2Ax1YeDZ0lZnQRQQeuGEIjVUQHOvQXY6dY/sEztcaLvQ3E5Lp7iFnzjhKGSRY8/QAMRwDSyMl6dBrOIiYI7LzMLak/hyRgm8WjCbQ4vNIlHYC9OCIJ5RtpckTmsiHKYQxy3Ov+ufTRjZVBMGgSUMR3x9YJZ4UKcwnPMd+v5VIvTcDTkW/gYb2vcyLUHD3Bc4=
+        secure: hRgGeDK/tiTEiBD/6aIuaTkMiT/dEptb8gPAFtSX/kohKHpuFLcj2/ZtsV1PJR3VLGgErGLQkH1dgWarGqr5vKmuq9yofGU6dZHUaA08s0JzsTxc8Jv2QvJ1krDBNzGotD7/9jfDp6VmDRhzlqHO6h9PNBkNzR60vfAKen1XgY9w+W0Vqc9Ye/4QPRKkXZqh5vxJKVaG8ODUWGY7Azmd0PYQu7Lh+RP8H1CO6w/N7mAvDjYcOC8djkq2vfcKGjmQuOdA8tTZubDM6CHaNJH514cNaIVS1a2aUY+++ZTzAzAm8yjIF9mh85CVu/zXCO5S4vmVm9YRE20gcdYI3QRjDouahKrXFIvNaZHIOPWbkX1pYv4B2ZBCbsjOpoEOVIgfIVuPNJB8xSiAM1noDqlwQck2UXUuypFmcH/eks26R2ZTVowPsd4X3AoDZ+367H66aQokS3UPYXobfpwI8DzLrSfQ6YvPup5kjRY2hU79IVicUj6mlOVzNfpJSRP0J55hxgEpBEr11glzgVyfYOZzwDLs/081umxVkL0jemJJZfW77PQWX63RG6X6tScXK1pCdBsEHuCEWMzUAnpkdonWuDlRurCtmC9thW7KPPehh8qkOCEBsKql/R1gxtwjPUbt5pZDynPjSY7FNF3g0oandKiEdMDNApLMiZtBWhwgkFY=
     file: dist.zip
     on:
         tags: true
         branch: master
-        repo: pkerpedjiev/higlass-time-interval-track
+        repo: higlass/higlass-time-interval-track
   - provider: npm
     skip_cleanup: true
     email: pkerpedjiev@gmail.com
     api_key:
-      secure: o5MzH+mx2GATdK+o6CrHbcjKkyollM7ZlxWkC8UQCAEvkNfao65Z7iR61sHcPKGZDz2n2UOc9Llx2KIbxK0CBSYTRxu4QO4U7TRqu7XXbGyFoxeC+A70A7pVQgG9zdAVrIeIkrzdQdKhsLWb0RL6U+tVaQ0qVQNPxW+5W9ns7PEkygaHu2URQGq/RlDKvRZqJRHgtpdVgv/S/qWBUc6BCHPjbKx/JSBjPjc/U2shVcXcVuNpZsfDgs93BjlIYHDRYoflA7498bJHEBlvtzrPvyBBmWviPzmEWmbCC/CVnWzYKS3fzXN02Q7N9pMOw367/wySW3D99Z+Dqb5h8o96GHv63unJXv0xvtUonxEhsv+bhGbhmBt6diFtyPL0NVnnyrO60ptDhqyae3ZsKTSud4FG2o/5rY1uzxtr4xxDfH7b/OLKGPg94c2FPLa+3aNUBvRseHPYWhZ8qgyI/H3ApFlZyWPJMTxRK+tPNEywQ5gn5CgNBud3cnw8qHs+aoI6BFNGCB0StcsGsGlADtr+2hFn/jv+lnQucs7iMyaHQGyR9nz+VhReze6cfyuPua0VCK8HQ6nG+a5TmkeWyQfO7VevWQIiWNyLP8GoeHqOKD9DzRojedufEOZ5YUOjAru08cbG3s+zjrSpj06aNDihLrzO4n7fgm9YPScWMunVTrg=
+      secure: DGIncZhOYiJZVQc2kg5eMe/dFfaJDS6hMx9rAkDNyHg2GDeYvP/dFmXvJMllR2m5c82UuNt2AuKZljC8QzK4H2ykxq18Rfl1Dw30iv7oMf4qsW/eK8+4Lzz6qyvlAAYfCFmOzDALe0OEQtq1DZRzojy4c/wAbLJzXlo+qQQKJuD0YRNiT/X6286OdRsh9F43K//cJyTdtSfWfqFN3jRgACoQIxrkqU9quNP2cvUpXTraPLR6s7t89+fRnVI0S1noZRMzlF7Qu7gQxDbrEblYPuUwqYSCrvninHiEQp5o9logm5cUwJkOeaIlYUcjEs3n542yLbLi2AkU+KktayxBEfdi1hZn+mB3qIF6sE61IU9Doq/OI2DFLkSypddYe/7cc+SUrR+v+xOnwTYIjqlLZ2f5WEuI7wni6RTNast1jj4Jm1dp7qyW0YKm9mKDJvsgLj/Oyc849Lr33w9wOAzMqgnSMNr0G7athobq4M1YNjkKsMnjz1lBgB5Tc9NQddMcOgOP58sgKI+vrVWKOECUn0znDhIKCtx27pBKzIYf0USPFeWWtkSKfbppIFS2+NXV4SsXxeF0txweqXYGtQ7VxvbNvApk9ObAHNoc32oOD02hqQAH9nbUq8pi1SyKrdWI1YpuWA/2Op1wSIMKFKlOWuv1VK0HYbRaLllx3QVB6gA=
     on:
       branch: master
       tags: true
-      repo: pkerpedjiev/higlass-time-interval-track
+      repo: higlass/higlass-time-interval-track

@@ -1,30 +1,5 @@
 import { format } from 'd3-format';
 
-const SECS_TO_MILLIS = 1000;
-
-function formatTime(seconds, tickDiff) {
-  // tickDiff specifies the number of significant digits for values between ticks
-  const h = Math.floor(seconds / 3600);
-  const m = Math.floor((seconds % 3600) / 60);
-  const s = seconds % 60;
-  let ss = s;
-
-  if (tickDiff && tickDiff < 0) {
-    const f = format('.' + (-tickDiff) + 'f');
-    ss = f(s);
-  }
-
-  if (s <= 9) {
-    ss = '0' + ss;
-  }
-
-  return [
-    h,
-    m > 9 ? m : (h ? '0' + m : m || '0'),
-    ss,
-  ].filter(a => a).join(':');
-}
-
 const TimeIntervalTrack = (HGC, ...args) => {
   if (!new.target) {
     throw new Error(
@@ -35,7 +10,7 @@ const TimeIntervalTrack = (HGC, ...args) => {
   // HiGlass Code
   const { PIXI } = HGC.libraries;
 
-  class TimeIntervalTrackClass extends HGC.tracks.TiledPixiTrack {
+  class TimeIntervalTrackClass extends HGC.tracks.PixiTrack {
     constructor(context, options) {
       super(context, options);
 
@@ -51,15 +26,11 @@ const TimeIntervalTrack = (HGC, ...args) => {
 
       // const color = getDarkTheme() ? '#cccccc' : 'black';
       const color = 'black';
-      let tickDiff = null;
-
-      if (this.tickValues.length >= 2) {
-        tickDiff = (this.tickValues[1] - this.tickValues[0]) / SECS_TO_MILLIS;
-        tickDiff = Math.floor(Math.log(tickDiff) / Math.log(10));
-      }
 
       while (i < this.tickValues.length) {
         const tick = this.tickValues[i];
+        const d = new Date(0);
+        d.setUTCSeconds(tick);
 
         while (this.axisTexts.length <= i) {
           const newText = new PIXI.Text(
@@ -75,9 +46,7 @@ const TimeIntervalTrack = (HGC, ...args) => {
           this.pMain.addChild(newText);
         }
 
-        this.axisTexts[i].text = formatTime(
-          tick / SECS_TO_MILLIS, tickDiff,
-        );
+        this.axisTexts[i].text = d.toLocaleDateString();
         this.axisTexts[i].anchor.y = 0.5;
         this.axisTexts[i].anchor.x = 0.5;
         i++;
@@ -90,35 +59,33 @@ const TimeIntervalTrack = (HGC, ...args) => {
     }
 
     calculateAxisTickValues() {
-      const scale = (+this.tilesetInfo.end_value - +this.tilesetInfo.start_value)
-        / +this.tilesetInfo.max_width;
+      const start = +this.options.start;
+      const scale = +this.options.increment;
+
       const tickWidth = 200;
       const tickCount = Math.max(
         Math.ceil((this._xScale.range()[1] - this._xScale.range()[0]) / tickWidth), 1,
       );
 
       const newScale = this._xScale.copy().domain(
-        [(this._xScale.domain()[0] * scale),
-          (this._xScale.domain()[1] * scale)],
+        [(start + (this._xScale.domain()[0] * scale)),
+          (start + (this._xScale.domain()[1] * scale))],
       );
 
-      return newScale.ticks(tickCount).filter(
-        t => t >= 0 && t <= (this.tilesetInfo.end_value - this.tilesetInfo.start_value),
-      );
+
+      return newScale.ticks(tickCount);
     }
 
 
     draw() {
       const graphics = this.pMain;
 
-      if (!this.tilesetInfo) return;
-
-      const scale = (+this.tilesetInfo.end_value - +this.tilesetInfo.start_value)
-        / +this.tilesetInfo.max_width;
+      const scale = +this.options.increment;
+      const start = +this.options.start;
 
       const tickHeight = 10;
       const textHeight = 10;
-      const betweenTickAndText = 5;
+      const betweenTickAndText = 10;
 
       const tickStartY = (this.dimensions[1] - tickHeight - textHeight - betweenTickAndText) / 2;
       const tickEndY = tickStartY + tickHeight;
@@ -132,7 +99,7 @@ const TimeIntervalTrack = (HGC, ...args) => {
 
       ticks.forEach((tick, i) => {
         const xPos = this.position[0] +
-          this._xScale(tick / scale);
+          this._xScale((tick - start) / scale);
 
         graphics.moveTo(xPos, this.position[1] + tickStartY);
         graphics.lineTo(xPos, this.position[1] + tickEndY);

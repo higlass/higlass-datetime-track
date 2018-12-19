@@ -57,7 +57,7 @@ const testViewConfig =
   editable: true,
   zoomFixed: false,
   trackSourceServers: [
-    'http://localhost:8989//api/v1'
+    'http://localhost:8989//api/v1',
   ],
   exportViewUrl: '/api/v1/viewconfs/',
   views: [
@@ -77,22 +77,20 @@ const testViewConfig =
             options: {},
             width: 20,
             height: 20,
-            position: 'top'
+            position: 'top',
           },
           {
             name: 'test.htime',
-            created: '2018-07-12T00:32:53.485157Z',
-            server: 'http://localhost:8989/api/v1',
-            tilesetUid: 'C4ga90PxQC20_cl7qRR6Ew',
             uid: 'M5rJkMRmQ4uvxXLt6mW0Mg',
             type: 'time-interval-track',
             options: {
-              name: 'test.htime'
+              start: -824072400.0,
+              increment: 3600,
             },
             width: 970,
             height: 92,
-            position: 'top'
-          }
+            position: 'top',
+          },
         ],
         left: [],
         center: [],
